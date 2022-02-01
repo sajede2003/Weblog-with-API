@@ -1,0 +1,747 @@
+{
+	"info": {
+		"_postman_id": "689b7ece-367c-4a64-8e7b-6c35099563d4",
+		"name": "blog collaction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "helloo@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "sajede",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/register",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|fY1G8hVwhHUSHk0Gx2CymegZQBcDseZnvghPfja4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{WebUrl}}/v1/logout",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "helloo@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "987654321",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/login",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|fY1G8hVwhHUSHk0Gx2CymegZQBcDseZnvghPfja4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "old_password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "987654321",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "987654321",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/change-password",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{WebUrl}}/v1/product",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "product",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "this is a good product",
+									"type": "text"
+								},
+								{
+									"key": "img",
+									"type": "file",
+									"src": "/E:/work/OnlineStore/public/uploads/20200930_105044.jpg"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/product",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "phone",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "this is a phone",
+									"type": "text"
+								},
+								{
+									"key": "img",
+									"type": "file",
+									"src": "/E:/work/OnlineStore/public/uploads/t3gju7.jpg"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/product/3",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"product",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|h7OBO8VsuEPUwiabAyUlELKyzvDj4K1nfc3QFUYZ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{WebUrl}}/v1/delete-product/12",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"delete-product",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|gUauvJHVH36GB0KYInB08rB4LvXIOZVydluynFMA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "product_id",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/like",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{WebUrl}}/v1/comments",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add comments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "hi its a comment for product",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "product_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "parent_id",
+									"value": "0",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/add-comment",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"add-comment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|h7OBO8VsuEPUwiabAyUlELKyzvDj4K1nfc3QFUYZ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{WebUrl}}/v1/admin",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|h7OBO8VsuEPUwiabAyUlELKyzvDj4K1nfc3QFUYZ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{WebUrl}}/v1/users",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{WebUrl}}/v1/category",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "phones",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/category",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "app",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{WebUrl}}/v1/category/1",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{WebUrl}}/v1/category/1",
+							"host": [
+								"{{WebUrl}}"
+							],
+							"path": [
+								"v1",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "WebUrl",
+			"value": "http://localhost:8000/",
+			"type": "string"
+		}
+	]
+}
