@@ -12,12 +12,13 @@ class CommentController extends Controller
 {
     public function comments()
     {
+//        get and show all comment
         return Comment::all();
     }
 
     public function add_comment(CommentRequest $request)
     {
-        // insert data into user table
+        // create new comment and replay
         return Comment::create([
             'body'=>$request->body,
             'user_id'=>$request->user_id,

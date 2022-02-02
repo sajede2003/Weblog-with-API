@@ -16,17 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
+//        get and show all categories
         return Category::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function create(): \Illuminate\Http\JsonResponse
-    {
-
     }
 
     /**
@@ -37,6 +28,7 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request): \Illuminate\Http\JsonResponse
     {
+//        create new category
         $category = Category::create($request->all());
 
         return response()->json([
@@ -54,12 +46,23 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request,Category $category): \Illuminate\Http\JsonResponse
     {
+//        update category
         $category = $category->update($request->all());
 
-        return response()->json([
-           'category'=>$category,
-           'status'=>'success'
-        ]);
+        if ($category){
+            return response()->json([
+                'category'=>$category,
+                'result'=>'category added successfully',
+                'status'=>'success'
+            ]);
+        }else{
+            return response()->json([
+                'category'=>$category,
+                'result'=>'category added was wrong',
+                'status'=>'success'
+            ]);
+        }
+
     }
 
     /**
@@ -68,9 +71,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Category $category): \Illuminate\Http\JsonResponse
+    public function destroy(int $id): \Illuminate\Http\JsonResponse
     {
-        $category->delete();
+//        delete category
+        Category::destroy($id);
 
         return response()->json([
             'result' => 'category deleted successfully',

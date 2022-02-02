@@ -14,12 +14,13 @@ class UserController extends Controller
 {
     public function register(RegisterRequest $request): \Illuminate\Http\JsonResponse
     {
+//        register user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-
+//        create unique token for user
         $token = $user->createToken('token')->plainTextToken;
 
         return response()->json([
@@ -39,7 +40,7 @@ class UserController extends Controller
                 'message' => 'email or password not match!'
             ], 401);
         }
-
+//        create unique token for user
         $token = $user->createToken('token')->plainTextToken;
 
         return response()->json([
@@ -50,6 +51,7 @@ class UserController extends Controller
 
     public function logout(): \Illuminate\Http\JsonResponse
     {
+//        delete user by token
         auth()->user()->tokens()->delete();
 
         return response()->json([
@@ -59,8 +61,9 @@ class UserController extends Controller
 
     public function changePassword(ChangePasswordRequest $request): \Illuminate\Http\JsonResponse
     {
+//        get user
         $user = $request->user();
-
+//        check password and update
         if (Hash::check($request->old_password , $user->password)){
             $user->update([
                 'password' =>bcrypt( $request->password)
@@ -70,18 +73,20 @@ class UserController extends Controller
                 'message' => 'Password successfully updated'
             ],200);
         }
-        return response()->json([
+       return response()->json([
             "message" => " Old password doesn't match ",
         ],400);
     }
 
     public function admin()
     {
+//        get and show admin users
         return User::where('is_admin' , 1)->get();
     }
 
     public function users()
     {
+//        get and show users
         return User::where('is_admin' , 0)->get();
     }
 }

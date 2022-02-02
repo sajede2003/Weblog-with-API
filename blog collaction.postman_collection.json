@@ -215,7 +215,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"value": "1|YmHdNndOpbzNCq0qKk3r76Ioo3yw5lsBgQ2gsF58",
 									"type": "string"
 								}
 							]
@@ -244,7 +244,7 @@
 								{
 									"key": "img",
 									"type": "file",
-									"src": "/E:/work/OnlineStore/public/uploads/20200930_105044.jpg"
+									"src": "/E:/work/first project/onlineStore/public/uploads/20200926_173146.jpg"
 								},
 								{
 									"key": "category_id",
@@ -274,12 +274,12 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"value": "1|YmHdNndOpbzNCq0qKk3r76Ioo3yw5lsBgQ2gsF58",
 									"type": "string"
 								}
 							]
 						},
-						"method": "PATCH",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
@@ -297,30 +297,35 @@
 								},
 								{
 									"key": "description",
-									"value": "this is a phone",
+									"value": "this is a phones",
 									"type": "text"
 								},
 								{
 									"key": "img",
 									"type": "file",
-									"src": "/E:/work/OnlineStore/public/uploads/t3gju7.jpg"
+									"src": "/E:/work/first project/onlineStore/public/uploads/20200930_105044.jpg"
 								},
 								{
 									"key": "category_id",
 									"value": "1",
 									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{WebUrl}}/v1/product/3",
+							"raw": "{{WebUrl}}/v1/product/10",
 							"host": [
 								"{{WebUrl}}"
 							],
 							"path": [
 								"v1",
 								"product",
-								"3"
+								"10"
 							]
 						}
 					},
@@ -334,7 +339,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|h7OBO8VsuEPUwiabAyUlELKyzvDj4K1nfc3QFUYZ",
+									"value": "1|YmHdNndOpbzNCq0qKk3r76Ioo3yw5lsBgQ2gsF58",
 									"type": "string"
 								}
 							]
@@ -348,14 +353,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{WebUrl}}/v1/delete-product/12",
+							"raw": "{{WebUrl}}/v1/product/13",
 							"host": [
 								"{{WebUrl}}"
 							],
 							"path": [
 								"v1",
-								"delete-product",
-								"12"
+								"product",
+								"13"
 							]
 						}
 					},
@@ -598,7 +603,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"value": "1|YmHdNndOpbzNCq0qKk3r76Ioo3yw5lsBgQ2gsF58",
 									"type": "string"
 								}
 							]
@@ -642,7 +647,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"value": "1|YmHdNndOpbzNCq0qKk3r76Ioo3yw5lsBgQ2gsF58",
 									"type": "string"
 								}
 							]

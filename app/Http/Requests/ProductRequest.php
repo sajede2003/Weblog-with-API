@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductRequest extends FormRequest
 {
@@ -33,53 +34,37 @@ class ProductRequest extends FormRequest
 
     }
 
-    public function createProduct($product)
+    public function createProduct()
     {
+//        validate data
         $validData = (object)$this->validated();
-        $newImageName = $this->uploadImg($product);
-
+//      insert img src in database and storage file
+        $path = $this->file('img')->store('public/uploads/images');
+//         create new product
         return Product::create([
             'title' => $validData->title,
             'description' => $validData->description,
-            'img' => $newImageName,
+            'img' => $path,
             'category_id' => $validData->category_id
         ]);
     }
 
     public function updateProduct($product)
     {
+//        get valid data
         $validData = (object)$this->validated();
-
-        $newImageName = $this->uploadImg($product);
-
+//        check if has img delete img in db and storage
+        if ($product->img != '' && $product->img != null) {
+            Storage::delete($product->img);
+        }
+//        insert new img
+        $path = $this->file('img')->store('public/uploads/images');
+//        update product
         return $product->update([
             'title' => $validData->title,
             'description' => $validData->description,
-            'img' => $newImageName,
+            'img' => $path,
             'category_id' => $validData->category_id
         ]);
-    }
-
-    public function uploadImg($product)
-    {
-        $validData = (object)$this->validated();
-
-        if ($validData->img != '') {
-            $path = public_path() . '/uploads/images/';
-
-            //for remove old file
-            if ($product->img != '' && $product->img != null) {
-                $file_old = $path . $product->img;
-                unlink($file_old);
-            }
-
-            //upload new file
-            $file = $validData->img;
-            $filename =$file->getClientOriginalName();
-            $file->move($path, $filename);
-
-            //for update in table
-            return $filename;
-        }
     }
 }
