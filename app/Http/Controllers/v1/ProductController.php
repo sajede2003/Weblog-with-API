@@ -79,10 +79,8 @@ class ProductController extends Controller
          * @return \Illuminate\Http\JsonResponse
          */
         public
-        function destroy($id): \Illuminate\Http\JsonResponse
+        function destroy(Product $product): \Illuminate\Http\JsonResponse
         {
-//            get product by id
-            $product = Product::findOrFail($id);
 //            get img src
             Storage::delete($product->img);
 //            product delete

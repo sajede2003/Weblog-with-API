@@ -60,9 +60,10 @@ class Handler extends ExceptionHandler
     {
         return $request->expectsJson()
             ? new JsonResponse([
-                'data' => 'not found',
+                'data' => 'not found route',
                 'status' => 'error'
             ], 404)
             : parent::render($request, $e);
     }
+
 }
