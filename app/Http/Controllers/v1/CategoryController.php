@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\v1\CategoryCollection;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -12,12 +13,13 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Category[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
+     * @return CategoryCollection|Category[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
 //        get and show all categories
-        return Category::all();
+        $category = Category::paginate(10);
+        return new CategoryCollection($category);
     }
 
     /**

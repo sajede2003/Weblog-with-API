@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Resources\v1\ProductCollection;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,12 +13,14 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Product[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
+     * @return ProductCollection|Product[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
 //        get and show all users
-        return Product::all()->loadCount('likes')->loadCount('comments');
+        $product = Product::paginate(3)->loadCount('likes')->loadCount('comments');
+
+        return new ProductCollection($product);
     }
 
     /**
@@ -85,7 +88,6 @@ class ProductController extends Controller
             Storage::delete($product->img);
 //            product delete
             $product->delete();
-
 
             return response()->json([
                 'result' => 'product deleted successfully',

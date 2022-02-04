@@ -13,7 +13,7 @@ class CommentController extends Controller
     public function comments()
     {
 //        get and show all comment
-        return Comment::all();
+        return Comment::paginate(5);
     }
 
     public function add_comment(CommentRequest $request)

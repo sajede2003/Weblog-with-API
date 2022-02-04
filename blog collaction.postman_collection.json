@@ -24,7 +24,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "helloo@gmail.com",
+									"value": "helloss@gmail.com",
 									"type": "text"
 								},
 								{
@@ -143,7 +143,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Accept",
@@ -167,6 +167,11 @@
 								{
 									"key": "password_confirmation",
 									"value": "987654321",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "put",
 									"type": "text"
 								}
 							]
@@ -192,6 +197,16 @@
 				{
 					"name": "products",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "1|hdoTgHDyycyB3UeHft7IkmvDmUien2sWsjA4tqhq",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -215,7 +230,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|YmHdNndOpbzNCq0qKk3r76Ioo3yw5lsBgQ2gsF58",
+									"value": "1|hdoTgHDyycyB3UeHft7IkmvDmUien2sWsjA4tqhq",
 									"type": "string"
 								}
 							]
@@ -244,7 +259,7 @@
 								{
 									"key": "img",
 									"type": "file",
-									"src": "/E:/work/first project/onlineStore/public/uploads/20200926_173146.jpg"
+									"src": "/E:/work/first project/onlineStore/public/uploads/20200926_173143.jpg"
 								},
 								{
 									"key": "category_id",
@@ -339,7 +354,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|YmHdNndOpbzNCq0qKk3r76Ioo3yw5lsBgQ2gsF58",
+									"value": "1|hdoTgHDyycyB3UeHft7IkmvDmUien2sWsjA4tqhq",
 									"type": "string"
 								}
 							]
@@ -353,14 +368,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{WebUrl}}/v1/product/13",
+							"raw": "{{WebUrl}}/v1/product/1",
 							"host": [
 								"{{WebUrl}}"
 							],
 							"path": [
 								"v1",
 								"product",
-								"13"
+								"1"
 							]
 						}
 					},
@@ -489,40 +504,6 @@
 			"name": "users",
 			"item": [
 				{
-					"name": "Admin",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "2|h7OBO8VsuEPUwiabAyUlELKyzvDj4K1nfc3QFUYZ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{WebUrl}}/v1/admin",
-							"host": [
-								"{{WebUrl}}"
-							],
-							"path": [
-								"v1",
-								"admin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "users",
 					"request": {
 						"auth": {
@@ -530,7 +511,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|h7OBO8VsuEPUwiabAyUlELKyzvDj4K1nfc3QFUYZ",
+									"value": "1|hdoTgHDyycyB3UeHft7IkmvDmUien2sWsjA4tqhq",
 									"type": "string"
 								}
 							]
@@ -544,13 +525,19 @@
 							}
 						],
 						"url": {
-							"raw": "{{WebUrl}}/v1/users",
+							"raw": "{{WebUrl}}/v1/users?page=2",
 							"host": [
 								"{{WebUrl}}"
 							],
 							"path": [
 								"v1",
 								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -569,7 +556,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "2|lBaYzTwQhAM3gHI9GUHi4kNlKLsRIMrufnf3A7QS",
+									"value": "1|hdoTgHDyycyB3UeHft7IkmvDmUien2sWsjA4tqhq",
 									"type": "string"
 								}
 							]
@@ -603,7 +590,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "1|YmHdNndOpbzNCq0qKk3r76Ioo3yw5lsBgQ2gsF58",
+									"value": "1|hdoTgHDyycyB3UeHft7IkmvDmUien2sWsjA4tqhq",
 									"type": "string"
 								}
 							]
@@ -745,7 +732,7 @@
 	"variable": [
 		{
 			"key": "WebUrl",
-			"value": "http://localhost:8000/",
+			"value": "http://localhost:8000/api",
 			"type": "string"
 		}
 	]

@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\v1\Users as UsersResource;
+use App\Http\Resources\v1\UsersCollection;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -35,7 +36,7 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
 //        check password
-        if (!$user || !Hash::check($request->password , $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'email or password not match!'
             ], 401);
@@ -64,29 +65,24 @@ class UserController extends Controller
 //        get user
         $user = $request->user();
 //        check password and update
-        if (Hash::check($request->old_password , $user->password)){
+        if (Hash::check($request->old_password, $user->password)) {
             $user->update([
-                'password' =>bcrypt( $request->password)
+                'password' => bcrypt($request->password)
             ]);
 
             return response()->json([
                 'message' => 'Password successfully updated'
-            ],200);
+            ], 200);
         }
-       return response()->json([
+        return response()->json([
             "message" => " Old password doesn't match ",
-        ],400);
+        ], 400);
     }
 
-    public function admin()
-    {
-//        get and show admin users
-        return User::where('is_admin' , 1)->get();
-    }
-
-    public function users()
+    public function users(): UsersCollection
     {
 //        get and show users
-        return User::where('is_admin' , 0)->get();
+        $user = User::paginate(2);
+        return new UsersCollection($user);
     }
 }

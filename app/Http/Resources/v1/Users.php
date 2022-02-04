@@ -3,7 +3,6 @@
 namespace App\Http\Resources\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use function Ramsey\Uuid\v1;
 
 class Users extends JsonResource
 {

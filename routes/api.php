@@ -32,7 +32,6 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [UserController::class, 'logout']);
 
         Route::middleware(['admin'])->group(function () {
-            Route::get('/admin', [UserController::class, 'admin']);
             Route::get('/users', [UserController::class, 'users']);
 
             Route::resource('/product', ProductController::class);
