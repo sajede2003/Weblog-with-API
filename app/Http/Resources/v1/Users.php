@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use function Ramsey\Uuid\v1;
 
 class Users extends JsonResource
 {
@@ -17,7 +18,7 @@ class Users extends JsonResource
         return [
             'name'=>$this->name,
             'email'=>$this->email,
-            'is_admin'=>$this->is_admin
+            'level'=>$this->when($this->is_admin ===1 , 'admin' , 'user')
         ];
     }
 }
