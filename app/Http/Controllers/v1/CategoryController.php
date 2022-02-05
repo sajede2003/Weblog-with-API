@@ -6,16 +6,34 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Resources\v1\CategoryCollection;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return CategoryCollection|Category[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
+     * @OA\Get (
+     *   path="/api/v1/category",
+     *   tags={"category"},
+     *   summary="main",
+     *     security={{"bearerAuth":{}}},
+     *       description="main page ",
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *)
+     * @return CategoryCollection
      */
-    public function index()
+    public function index(): CategoryCollection
     {
 //        get and show all categories
         $category = Category::paginate(10);
@@ -25,10 +43,36 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post (
+     *   path="/api/v1/category",
+     *   tags={"category"},
+     *   summary="main",
+     *   security={{"bearerAuth":{}}},
+     *   description="main page ",
+     *
+     *   @OA\Parameter(
+     *      name="name",
+     *      in="query",
+     *      description="edit category name",
+     *      required=true,
+     *    ),
+     *
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *   ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *)
+     * @param CategoryRequest $request
+     * @return JsonResponse
      */
-    public function store(CategoryRequest $request): \Illuminate\Http\JsonResponse
+    public function store(CategoryRequest $request): JsonResponse
     {
 //        create new category
         $category = Category::create($request->all());
@@ -41,27 +85,66 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @OA\Put (
+     *   path="/api/v1/category/{id}",
+     *   tags={"category"},
+     *   summary="main",
+     *   security={{"bearerAuth":{}}},
+     *   description="main page ",
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema (type = "string")
+     *     ),
+     *
+     *    @OA\RequestBody (
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema (
+     *                      @OA\Property (
+     *                          property = "name",
+     *                          type = "string"
+     *                      )
+     *              )
+     *          )
+     *     ),
+     *
+     *
+     *   @OA\Response(
+     *      response=200,
+     *       description="Success",
+
+     *      @OA\MediaType(
+     *           mediaType="application/json",
+     *      )
+     *  ),
+     *   @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *)
+     * @param CategoryRequest $request
+     * @param Category $category
+     * @return JsonResponse
      */
-    public function update(CategoryRequest $request,Category $category): \Illuminate\Http\JsonResponse
+    public function update(CategoryRequest $request, Category $category): JsonResponse
     {
 //        update category
         $category = $category->update($request->all());
 
-        if ($category){
+        if ($category) {
             return response()->json([
-                'category'=>$category,
-                'result'=>'category added successfully',
-                'status'=>'success'
+                'category' => $category,
+                'result' => 'category updated successfully',
+                'status' => 'success'
             ]);
-        }else{
+        } else {
             return response()->json([
-                'category'=>$category,
-                'result'=>'category added was wrong',
-                'status'=>'success'
+                'category' => $category,
+                'result' => 'category updated was wrong',
+                'status' => 'success'
             ]);
         }
 
@@ -69,18 +152,17 @@ class CategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @param int $id
+     * @return JsonResponse
      */
-    public function destroy(int $id): \Illuminate\Http\JsonResponse
+    public function destroy(int $id): JsonResponse
     {
 //        delete category
         Category::destroy($id);
 
         return response()->json([
             'result' => 'category deleted successfully',
-            'status'=>'success'
+            'status' => 'success'
         ]);
     }
 }

@@ -20,7 +20,8 @@ class ProductCollection extends ResourceCollection
                     'title' => $item->title,
                     'descriptions' => $item->description,
                     'img' => $item->img,
-                    'LikesCount'=>$item->loadCount('likes'),
+                    'like_count'=>$item->likes_count,
+                    'comment_count'=>$item->comments_count,
                     'category' => $item->category_id
                 ];
             })
