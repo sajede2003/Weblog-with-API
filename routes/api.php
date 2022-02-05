@@ -23,20 +23,19 @@ Route::prefix('v1')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
 
     Route::post('/like', [LikeController::class, 'like']);
-
     Route::get('/comments', [CommentController::class, 'comments']);
-    Route::post('/add-comment', [CommentController::class, 'add_comment']);
 
     Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/add-comment', [CommentController::class, 'add_comment']);
         Route::post('/change-password', [UserController::class, 'changePassword']);
         Route::post('/logout', [UserController::class, 'logout']);
 
         Route::middleware(['admin'])->group(function () {
             Route::get('/users', [UserController::class, 'users']);
 
-            Route::resource('/product', ProductController::class);
+            Route::apiResource('/product', ProductController::class);
 
-            Route::resource('/category', CategoryController::class);
+            Route::apiResource('/category', CategoryController::class);
         });
     });
 });

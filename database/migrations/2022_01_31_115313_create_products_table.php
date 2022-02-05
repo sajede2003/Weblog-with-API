@@ -18,10 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('img');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')
-                ->references('id')->on('categories')
-                ->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

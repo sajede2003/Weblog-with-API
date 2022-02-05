@@ -155,7 +155,7 @@ class CategoryController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function destroy(int $id): JsonResponse
+    public function destroy(Category $id): JsonResponse
     {
 //        delete category
         Category::destroy($id);
